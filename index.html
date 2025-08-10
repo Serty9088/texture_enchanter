@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Texture Enchanter</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Texture Enchanter</h1>
+    </header>
+
+    <main>
+        <!-- Список файлов -->
+        <section class="panel stack">
+            <div id="drop" class="drop">
+                Перетащи PNG-файлы (можно сразу несколько) или нажми для выбора
+                <input id="file" type="file" accept="image/png" hidden multiple>
+            </div>
+            <div id="list" class="list"></div>
+            <div class="buttons">
+                <button id="applySelected" class="item-action-button">Применить к выбранному</button>
+                <button id="applyAll" class="item-action-button">Применить ко всем</button>
+            </div>
+            <div class="buttons">
+                <button id="downloadSelected" class="item-action-button">Скачать выбранное</button>
+                <button id="downloadAll" class="item-action-button">Скачать всё</button>
+            </div>
+            <div class="footnote">↑/↓ — переключение по списку, Enter — применить к выбранному.</div>
+        </section>
+
+        <!-- Панель настроек -->
+        <section class="panel stack">
+            <!-- LIGHT -->
+            <div class="row"><label>Сила света/тени</label>
+                <input id="lightStrength" type="range" min="0" max="2" step="0.01" value="0.85">
+                <input id="lightStrengthNum" type="number" min="0" max="2" step="0.01" value="0.85">
+            </div>
+            <div class="row"><label>Азимут света (°)</label>
+                <input id="azimuth" type="range" min="0" max="360" step="1" value="229">
+                <input id="azimuthNum" type="number" min="0" max="360" step="1" value="229">
+            </div>
+            <div class="row"><label>Высота света (°)</label>
+                <input id="elevation" type="range" min="5" max="85" step="1" value="22">
+                <input id="elevationNum" type="number" min="5" max="85" step="1" value="22">
+            </div>
+            <div class="row"><label>Мягкость света</label>
+                <input id="lightSoft" type="range" min="0" max="3" step="0.01" value="1.13">
+                <input id="lightSoftNum" type="number" min="0" max="3" step="0.01" value="1.13">
+            </div>
+            <div class="row"><label>Амбиент (минимум тени)</label>
+                <input id="ambient" type="range" min="0" max="2" step="0.01" value="0.45">
+                <input id="ambientNum" type="number" min="0" max="2" step="0.01" value="0.45">
+            </div>
+
+            <!-- TONE -->
+            <div class="row"><label>Контраст (средние тона)</label>
+                <input id="contrast" type="range" min="0" max="1" step="0.01" value="0.03">
+                <input id="contrastNum" type="number" min="0" max="1" step="0.01" value="0.03">
+            </div>
+            <div class="row"><label>Экспозиция (затемнение)</label>
+                <input id="exposure" type="range" min="0.6" max="1.1" step="0.01" value="0.83">
+                <input id="exposureNum" type="number" min="0.6" max="1.1" step="0.01" value="0.83">
+            </div>
+            <div class="row"><label>Сатурация</label>
+                <input id="saturation" type="range" min="-0.4" max="0.6" step="0.01" value="0.0">
+                <input id="saturationNum" type="number" min="-0.4" max="0.6" step="0.01" value="0.0">
+            </div>
+            <div class="row"><label>Вибранс</label>
+                <input id="vibrance" type="range" min="-1" max="1" step="0.01" value="0.0">
+                <input id="vibranceNum" type="number" min="-1" max="1" step="0.01" value="0.0">
+            </div>
+            <div class="row"><label>Гамма</label>
+                <input id="gamma" type="range" min="0.5" max="1.8" step="0.01" value="1.04">
+                <input id="gammaNum" type="number" min="0.5" max="1.8" step="0.01" value="1.04">
+            </div>
+            <div class="row"><label>Постеризация (уровни/канал)</label>
+                <input id="posterize" type="range" min="0" max="32" step="1" value="0">
+                <input id="posterizeNum" type="number" min="0" max="32" step="1" value="0">
+            </div>
+
+            <!-- FLAGS -->
+            <div class="toggle"><input id="tiling" type="checkbox" checked>
+                <label for="tiling">Безшовный режим (wrap для свёрток)</label>
+            </div>
+            <div class="toggle"><input id="preserveAlpha" type="checkbox" checked>
+                <label for="preserveAlpha">Сохранять прозрачные пиксели</label>
+            </div>
+
+            <!-- ZOOM -->
+            <div class="row"><label>Превью‑зум (×)</label>
+                <input id="zoom" type="range" min="1" max="24" step="1" value="8">
+                <input id="zoomNum" type="number" min="1" max="24" step="1" value="8">
+            </div>
+
+            <div class="buttons">
+                <button id="reset" class="item-action-button">Сброс настроек</button>
+            </div>
+        </section>
+
+        <!-- Превью -->
+        <section class="panel stack right">
+            <div class="previews">
+                <div>
+                    <div class="title">Обработано</div>
+                    <canvas id="outCanvas" width="16" height="16"></canvas>
+                </div>
+                <div>
+                    <div class="title">Оригинал</div>
+                    <canvas id="srcCanvas" width="16" height="16"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+	<script src="./script.js"></script>
+</body>
+
+</html>
