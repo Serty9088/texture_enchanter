@@ -606,7 +606,7 @@ function downloadResults(scope) {
     for (const item of targets) {
         if (!item || !item.outBlob) continue;
         const a = document.createElement('a');
-        a.download = item.name.replace(/\.png$/i, '') + '.enhanced.png';
+        a.download = item.name.replace(/\.png$/i, '') + '.png';
         a.href = URL.createObjectURL(item.outBlob);
         a.click();
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
